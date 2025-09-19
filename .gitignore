@@ -1,0 +1,16 @@
+# clangd
+.cache/
+.cache/**
+
+# usual C++/CMake/editor junk (optional)
+build/
+CMakeFiles/
+CMakeCache.txt
+*.obj
+*.o
+*.a
+*.so
+*.dll
+*.exe
+.vscode/
+.idea/
