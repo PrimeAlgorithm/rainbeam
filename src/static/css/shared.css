@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --eminence: #7e3f8f;
+  --royal-purple: #81559b;
+  --cool-gray: #8c86aa;
+  --light-green: #b2ef9b;
+  --dark-green: #296e10;
+  --mindaro: #daff7d;
+  --dark-purple: #151138;
+  --light-purple: #272950;
+}
+
+body {
+  font-family: "Poppins";
+  background-color: var(--dark-purple);
+}
+
+p,
+h1,
+h2,
+h3,
+h4 {
+  color: white;
+}
+
+input[type="text"] {
+  border-radius: 15px;
+  background-color: var(--light-purple);
+  padding: 8px;
+  border: 2px solid black;
+  font-family: "Poppins";
+  color: white;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search {
+  width: 20%;
+  height: 8%;
+}
+
+.button {
+  background-color: var(--mindaro);
+  color: black;
+  border: none;
+  border-bottom: 5px solid var(--dark-green);
+  border-radius: 12px;
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 120ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    background-color 180ms ease, border-bottom-width 120ms ease;
+}
+
+.button:hover {
+  background-color: var(--light-green);
+}
+
+.button:active {
+  border-bottom: none;
+  transform: translateY(3px);
+}
+
+#add {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  height: 5rem;
+  width: 5rem;
+  padding-bottom: 5px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  line-height: 1;
+  display: inline-block;
+}

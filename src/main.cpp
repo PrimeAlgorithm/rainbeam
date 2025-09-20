@@ -2,7 +2,8 @@
 #include <cpp-httplib/httplib.h>
 #include <filesystem>
 
-int main() {
+int main()
+{
     httplib::Server server;
 
     // Serve Static Files
