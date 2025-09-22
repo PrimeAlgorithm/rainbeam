@@ -1,26 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js"></script>
+        <meta charset="UTF-8" />
+        <title>Rainbeam</title>
+        <link rel="stylesheet" href="/css/shared.css" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=add"
+        />
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+    </head>
 
-<head>
-    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js"></script>
-    <meta charset="UTF-8">
-    <title>Rainbeam</title>
-    <link rel="stylesheet" href="/css/shared.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=add" />
-</head>
+    <body>
+        <main>
+            <div class="topbar">
+                <h2>🦄 Rainbeam Dashboard</h2>
 
-<body>
-    <main>
-        <div class="topbar">
-            <h2>🦄 Rainbeam Dashboard</h3>
+                <input
+                    type="text"
+                    class="search"
+                    name="filter"
+                    placeholder="Search"
+                />
+            </div>
 
-            <input type="text" class="search" name="filter" placeholder="Search">
-        </div>
+            <div x-data="{ open: false }">
+                <button
+                    style="font-size: 3rem"
+                    @click="open = !open"
+                    id="add"
+                    class="button"
+                >
+                    +
+                </button>
 
+                <div x-show="open" class="modal">
+                    <div class="modal-content">
+                        <!-- <span class="close">&times;</span> -->
+                        <p>What would you like to name this share session?</p>
 
-        <button id="add" class="button">
-            +
-        </button>
-    </main>
-</body>
+                        <input
+                            type="text"
+                            name="share-name"
+                            class="modal-input"
+                            placeholder="Name Here"
+                            required
+                        />
+
+                        <p>
+                            If you would like to provide a password for this
+                            share, please input one here. If this box is left
+                            empty, no password will be registered.
+                        </p>
+                        <input
+                            type="password"
+                            name="share-password"
+                            class="modal-input"
+                            placeholder="Optional Password Here"
+                        />
+
+                        <p>
+                            If you would like to provide a date for when this
+                            share session should expire, please put it here. If
+                            this date box is left cleared, no clear date will be
+                            registered.
+                        </p>
+
+                        <input
+                            type="date"
+                            class="modal-input"
+                            name="selectedDate"
+                        />
+
+                        <p>Select which files you would like to share here.</p>
+                        <input
+                            type="file"
+                            id="myFile"
+                            name="uploadedFile"
+                            class="modal-input"
+                            multiple
+                            required
+                        />
+
+                        <p>Confirm</p>
+                        <button style="font-size: 1.5rem" class="button">
+                            Start Share Session
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
 </html>
