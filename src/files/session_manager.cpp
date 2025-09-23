@@ -1,4 +1,5 @@
 #include "rainbeam/files/session_manager.h"
+#include <nlohmann/json.hpp>
 #include <filesystem>
 #include <iostream>
 #include <fstream>
@@ -16,24 +17,23 @@ SessionManager::SessionManager()
 
     // Create Rainbeam directory if needed.
     rainbeam_dir = this->create_required_directories();
-
-    this->create_save_session("test");
 };
 
 // Public methods
 
 bool SessionManager::create_save_session(std::string name)
 {
-
     std::filesystem::path save_session = this->rainbeam_dir / std::filesystem::path{name};
-    std::cout << "Save session file: " << save_session << "\n";
 
     if (std::filesystem::create_directories(save_session))
     {
-
-        std::ofstream ofs(save_session / "settings.json");
-
-        std::cout << "Created file\n";
+        std::ofstream settings_file(save_session / "settings.json");
+        nlohmann::json settings;
+        settings["name"] = name;
+        settings["password"] = "";
+        settings["expire_date"] = "";
+        settings_file << settings.dump(4);
+        settings_file.close();
 
         return true;
     }
@@ -47,10 +47,9 @@ std::filesystem::path SessionManager::load_documents_dir()
 {
 #ifdef _WIN32
     // User is on Windows
-
     PWSTR path_tmp;
-
     auto response = SHGetKnownFolderPath(FOLDERID_Documents, 0, nullptr, &path_tmp);
+
     if (response != S_OK)
     {
         CoTaskMemFree(path_tmp);
@@ -74,7 +73,6 @@ std::filesystem::path SessionManager::load_documents_dir()
     {
         throw std::runtime_error("Documents path cannot be found on UNIX system");
     }
-
 #endif
 }
 
