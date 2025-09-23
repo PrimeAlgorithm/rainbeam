@@ -1,10 +1,14 @@
 #include "rainbeam/api/router.h"
+#include "rainbeam/files/session_manager.h"
+
 #include <cpp-httplib/httplib.h>
 #include <filesystem>
 
 int main()
 {
     httplib::Server server;
+
+    SessionManager file;
 
     // Serve Static Files
     const std::string static_dir = (std::filesystem::path(__FILE__).parent_path() / "static").string();
