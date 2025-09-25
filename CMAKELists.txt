@@ -14,6 +14,15 @@ add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 # Get header files
 target_include_directories(${PROJECT_NAME} PRIVATE "${PROJECT_SOURCE_DIR}/include")
 
+# Enforce minimum Windows API
+if (WIN32)
+  target_compile_definitions(${PROJECT_NAME} PRIVATE
+    _WIN32_WINNT=0x0A00
+    WINVER=0x0A00
+  )
+endif()
+
+# Add required libraries for Windows
 if (WIN32)
   target_link_libraries(${PROJECT_NAME} PRIVATE ws2_32)
 endif()
